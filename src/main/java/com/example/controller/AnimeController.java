@@ -23,7 +23,7 @@ public class AnimeController {
 
     @GetMapping
     public Flux<Anime> listAll(){
-        return service.getAnimes()
+        return service.getAllAnimes()
                 .log();
     }
 

@@ -16,7 +16,7 @@ import reactor.core.publisher.Mono;
 public class AnimeService {
     public final AnimeRepository repository;
 
-    public Flux<Anime> getAnimes() {
+    public Flux<Anime> getAllAnimes() {
         return repository.findAll();
     }
 
