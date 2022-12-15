@@ -22,12 +22,13 @@ public class AnimeController {
     private final AnimeService service;
 
     @GetMapping
+    @ResponseStatus(HttpStatus.OK)
     public Flux<Anime> listAll(){
-        return service.getAllAnimes()
-                .log();
+        return service.getAllAnimes();
     }
 
     @GetMapping(path = "{id}")
+    @ResponseStatus(HttpStatus.OK)
     public Mono<Anime> getAnimeById(@PathVariable long id){
         return service.findById(id);
     }
