@@ -13,6 +13,8 @@ import org.springframework.web.server.ResponseStatusException;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 
+import java.util.List;
+
 @RestController
 @RequestMapping("/anime")
 @Slf4j
@@ -37,6 +39,12 @@ public class AnimeController {
     @ResponseStatus(HttpStatus.CREATED)
     public Mono<Anime> saveAnime(@Valid @RequestBody Anime anime){
         return service.save(anime);
+    }
+
+    @PostMapping("/batch")
+    @ResponseStatus(HttpStatus.CREATED)
+    public Flux<Anime> BatchSave(@RequestBody List<Anime> animes){
+        return service.saveAllAnime(animes);
     }
 
     @PutMapping

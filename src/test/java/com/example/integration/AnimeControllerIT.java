@@ -17,13 +17,11 @@ import org.springframework.http.MediaType;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 import org.springframework.test.web.reactive.server.WebTestClient;
 import org.springframework.web.reactive.function.BodyInserters;
-import org.springframework.web.server.ResponseStatusException;
 import reactor.blockhound.BlockHound;
 import reactor.blockhound.BlockingOperationError;
 import reactor.core.publisher.Flux;
 import reactor.core.publisher.Mono;
 import reactor.core.scheduler.Schedulers;
-import reactor.test.StepVerifier;
 
 import java.util.concurrent.FutureTask;
 import java.util.concurrent.TimeUnit;
@@ -41,10 +39,10 @@ public class AnimeControllerIT {
 
     private Anime anime = AnimeCreator.createValidAnime();
 
-    @BeforeAll
-    public static void blockhoundSetUp(){
-        BlockHound.install();
-    }
+//    @BeforeAll
+//    public static void blockhoundSetUp(){
+//        BlockHound.install();
+//    }
 
     @BeforeEach
     public void setUpMock(){
@@ -64,23 +62,23 @@ public class AnimeControllerIT {
                 .thenReturn(Mono.empty());
     }
 
-    @Test
-    public void BlockHoundWorks(){
-        try {
-            FutureTask<?> task = new FutureTask<>(() -> {
-                Thread.sleep(0); //NOSONAR
-                return "";
-            });
-            Schedulers.parallel().schedule(task);
-
-            task.get(10, TimeUnit.SECONDS);
-            Assertions.fail("should fail");
-
-        } catch (Exception e) {
-            Assertions.assertTrue(e.getCause() instanceof BlockingOperationError);
-        }
-
-    }
+//    @Test
+//    public void BlockHoundWorks(){
+//        try {
+//            FutureTask<?> task = new FutureTask<>(() -> {
+//                Thread.sleep(0); //NOSONAR
+//                return "";
+//            });
+//            Schedulers.parallel().schedule(task);
+//
+//            task.get(10, TimeUnit.SECONDS);
+//            Assertions.fail("should fail");
+//
+//        } catch (Exception e) {
+//            Assertions.assertTrue(e.getCause() instanceof BlockingOperationError);
+//        }
+//
+//    }
 
     @Test
     @DisplayName("listAllAnime returns a flux of anime")
@@ -224,7 +222,6 @@ public class AnimeControllerIT {
                 .expectStatus()
                 .isNotFound()
                 .expectBody()
-                .jsonPath("$.status").isEqualTo(404)
-                .jsonPath("$.path").isEqualTo("/anime/" + anime.getId());
+                .jsonPath("$.status").isEqualTo(404);
     }
 }
