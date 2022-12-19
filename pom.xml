@@ -22,6 +22,10 @@
 	</properties>
 	<dependencies>
 		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-security</artifactId>
+		</dependency>
+		<dependency>
 			<groupId>io.projectreactor.tools</groupId>
 			<artifactId>blockhound</artifactId>
 			<version>${blockhound.version}</version>
@@ -49,6 +53,18 @@
 			<artifactId>spring-boot-devtools</artifactId>
 			<scope>runtime</scope>
 			<optional>true</optional>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.r2dbc/r2dbc-spi -->
+		<dependency>
+			<groupId>io.r2dbc</groupId>
+			<artifactId>r2dbc-spi</artifactId>
+			<version>1.0.0.RELEASE</version>
+		</dependency>
+		<!-- https://mvnrepository.com/artifact/io.r2dbc/r2dbc-pool -->
+		<dependency>
+			<groupId>io.r2dbc</groupId>
+			<artifactId>r2dbc-pool</artifactId>
+			<version>1.0.0.RELEASE</version>
 		</dependency>
 		<dependency>
 			<groupId>org.projectlombok</groupId>
@@ -92,6 +108,10 @@
 			<groupId>org.apache.bval</groupId>
 			<artifactId>bval-jsr</artifactId>
 			<version>2.0.5</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security</groupId>
+			<artifactId>spring-security-test</artifactId>
 		</dependency>
 	</dependencies>
 
