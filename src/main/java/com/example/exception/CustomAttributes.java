@@ -15,8 +15,7 @@ public class CustomAttributes extends DefaultErrorAttributes {
     public Map<String, Object> getErrorAttributes(ServerRequest request, ErrorAttributeOptions options) {
         Map<String, Object> errorAttributesMap = super.getErrorAttributes(request, options);
         Throwable throwable = getError(request);
-        if (throwable instanceof ResponseStatusException){
-            ResponseStatusException ex = (ResponseStatusException) throwable;
+        if (throwable instanceof ResponseStatusException ex){
             errorAttributesMap.put("message", ex.getMessage());
             errorAttributesMap.put("developerMessage", "A ResponseStatusErrorException Happened");
             return errorAttributesMap;

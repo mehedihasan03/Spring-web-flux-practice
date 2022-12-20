@@ -33,7 +33,7 @@ public class GlobalExceptionHandler extends AbstractErrorWebExceptionHandler {
                                   ApplicationContext applicationContext,
                                   ServerCodecConfigurer codecConfigurer) {
         super(errorAttributes, resources, applicationContext);
-        this.setMessageWriters(codecConfigurer.getWriters());;
+        this.setMessageWriters(codecConfigurer.getWriters());
     }
 
     @Override

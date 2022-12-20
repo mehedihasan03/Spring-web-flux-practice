@@ -3,6 +3,10 @@ package com.example.controller;
 import com.example.domain.Anime;
 import com.example.repository.AnimeRepository;
 import com.example.service.AnimeService;
+import io.swagger.v3.oas.annotations.Operation;
+import io.swagger.v3.oas.annotations.enums.SecuritySchemeType;
+import io.swagger.v3.oas.annotations.security.SecurityRequirement;
+import io.swagger.v3.oas.annotations.security.SecurityScheme;
 import jakarta.validation.Valid;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
@@ -20,6 +24,7 @@ import java.util.List;
 @RequestMapping("/anime")
 @Slf4j
 @RequiredArgsConstructor
+@SecurityScheme(name = "Basic Authentication", type = SecuritySchemeType.HTTP, scheme = "Basic")
 public class AnimeController {
     @Autowired
     private final AnimeService service;
@@ -27,6 +32,7 @@ public class AnimeController {
     @GetMapping
     @ResponseStatus(HttpStatus.OK)
     @PreAuthorize("hasRole('ADMIN')")
+    @Operation(summary = "List of all Anime", tags = {"anime"}, security = @SecurityRequirement(name = "Basic Authentication"))
     public Flux<Anime> listAll(){
         return service.getAllAnimes();
     }
